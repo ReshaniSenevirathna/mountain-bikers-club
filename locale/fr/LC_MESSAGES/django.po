@@ -73,7 +73,7 @@ msgstr "Mon tableau de bord"
 #: member/templates/member/login.html:4 member/templates/member/login.html:11
 #: shell/templates/shell/base.html:105
 msgid "Sign in"
-msgstr "Se logger"
+msgstr "Se connecter"
 
 #: discover/templates/discover/index.html:36
 #: discover/templates/discover/index.html:49
@@ -108,7 +108,7 @@ msgstr "S'enregistrer"
 
 #: member/admin.py:15
 msgid "Personal info"
-msgstr ""
+msgstr "Infos personelles"
 
 #: member/admin.py:16 member/templates/member/main.html:40
 msgid "Trails"
@@ -116,11 +116,11 @@ msgstr "Trails"
 
 #: member/admin.py:17
 msgid "Important dates"
-msgstr ""
+msgstr "Dates importantes"
 
 #: member/admin.py:18
 msgid "Permissions"
-msgstr ""
+msgstr "Permissions"
 
 #: member/forms.py:34 member/forms.py:57
 msgid "This username is forbidden."
@@ -128,11 +128,11 @@ msgstr "Ce nom d'utilisateur est interdit."
 
 #: member/models.py:10
 msgid "email address"
-msgstr ""
+msgstr "adresse électronique"
 
 #: member/models.py:13
 msgid "Required. No bullshit, I promise."
-msgstr "Requis. Pas de connerie, promis."
+msgstr "Requis. Pas de conneries, promis."
 
 #: member/models.py:15
 msgid "A user with that email address already exists."
@@ -191,7 +191,7 @@ msgstr "Favoris"
 #: member/templates/member/main.html:59
 #: member/templates/member/password_change.html:4
 msgid "Change password"
-msgstr ""
+msgstr "Changer de mot de passe"
 
 #: member/templates/member/main.html:64
 msgid "Delete my account"
@@ -202,71 +202,79 @@ msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
 msgstr ""
+"Pour des raisons de sécurité, entrez votre ancien mot de passe, puis le nouveau "
+"mot de passe deux fois pour vérifier qu'il est correctement renseigné."
 
 #: member/templates/member/password_change.html:19
 #: member/templates/member/password_reset_confirm.html:27
 msgid "Change my password"
-msgstr ""
+msgstr "Modifier mon mot de passer"
 
 #: member/templates/member/password_change_done.html:4
 msgid "Password changed successfully."
-msgstr ""
+msgstr "Mot de passe modifié"
 
 #: member/templates/member/password_change_done.html:11
 msgid "Your password was changed."
-msgstr ""
+msgstr "Votre mot de passe vient d'être modifié"
 
 #: member/templates/member/password_reset.html:4
 #: member/templates/member/password_reset_complete.html:4
 #: member/templates/member/password_reset_done.html:4
 msgid "Password reset"
-msgstr ""
+msgstr "Réinitialiser le mot de passer"
 
 #: member/templates/member/password_reset.html:11
 msgid ""
 "Forgotten your password? Enter your email address below, and we'll email "
 "instructions for setting a new one."
 msgstr ""
+"Mot de passe oublié ? Entrez votre email ci-dessous et vous recevrez "
+"les instructions pour avoir un nouveau mot de passe."
 
 #: member/templates/member/password_reset.html:17
 msgid "Email address:"
-msgstr ""
+msgstr "Adresse email"
 
 #: member/templates/member/password_reset.html:21
 msgid "Reset my password"
-msgstr ""
+msgstr "Réinitialiser mon mot de passe"
 
 #: member/templates/member/password_reset_complete.html:11
 msgid "Your password has been set.  You may go ahead and log in now."
-msgstr ""
+msgstr "Votre nouveau mot de passe est en place.  Vous pouvez maintenant vous connecter."
 
 #: member/templates/member/password_reset_complete.html:12
 msgid "Log in"
-msgstr ""
+msgstr "Se connecter"
 
 #: member/templates/member/password_reset_confirm.html:4
 msgid "Password reset confirmation"
-msgstr ""
+msgstr "Confirmation de réinitialisation du mot de passe"
 
 #: member/templates/member/password_reset_confirm.html:12
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
 msgstr ""
+"Merci d'entrer votre nouveau mot de passe deux fois afin de vérifier son "
+"exactitude."
 
 #: member/templates/member/password_reset_confirm.html:18
 msgid "New password:"
-msgstr ""
+msgstr "Nouveau mot de passe :"
 
 #: member/templates/member/password_reset_confirm.html:23
 msgid "Confirm password:"
-msgstr ""
+msgstr "Confirmer le mot de passe :"
 
 #: member/templates/member/password_reset_confirm.html:31
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
+"Le lien de réinitialisation du mot de passe est invalide, probablement parcequ'il a déjà "
+"été utilisé.  Merci de redemander la réinitialisation."
 
 #: member/templates/member/password_reset_done.html:11
 msgid ""
