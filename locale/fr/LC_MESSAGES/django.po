@@ -241,8 +241,8 @@ msgid "Reset my password"
 msgstr "Réinitialiser mon mot de passe"
 
 #: member/templates/member/password_reset_complete.html:11
-msgid "Your password has been set.  You may go ahead and log in now."
-msgstr "Votre nouveau mot de passe est en place.  Vous pouvez maintenant vous connecter."
+msgid "Your password has been set. You may go ahead and log in now."
+msgstr "Votre nouveau mot de passe est en place. Vous pouvez maintenant vous connecter."
 
 #: member/templates/member/password_reset_complete.html:12
 msgid "Log in"
@@ -271,10 +271,10 @@ msgstr "Confirmer le mot de passe :"
 #: member/templates/member/password_reset_confirm.html:31
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
-"used.  Please request a new password reset."
+"used. Please request a new password reset."
 msgstr ""
 "Le lien de réinitialisation du mot de passe est invalide, probablement parcequ'il a déjà "
-"été utilisé.  Merci de redemander la réinitialisation."
+"été utilisé. Merci de redemander la réinitialisation."
 
 #: member/templates/member/password_reset_done.html:11
 msgid ""
