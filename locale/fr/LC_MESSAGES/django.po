@@ -229,12 +229,12 @@ msgid ""
 "Forgotten your password? Enter your email address below, and we'll email "
 "instructions for setting a new one."
 msgstr ""
-"Mot de passe oublié ? Entrez votre email ci-dessous et vous recevrez "
+"Mot de passe oublié ? Entrez votre adresse électronique ci-dessous et vous recevrez "
 "les instructions pour avoir un nouveau mot de passe."
 
 #: member/templates/member/password_reset.html:17
 msgid "Email address:"
-msgstr "Adresse email"
+msgstr "Adresse électronique"
 
 #: member/templates/member/password_reset.html:21
 msgid "Reset my password"
@@ -242,7 +242,7 @@ msgstr "Réinitialiser mon mot de passe"
 
 #: member/templates/member/password_reset_complete.html:11
 msgid "Your password has been set.  You may go ahead and log in now."
-msgstr "Votre nouveau mot de passe est en place.  Vous pouvez maintenant vous connecter."
+msgstr "Votre nouveau mot de passe est en place. Vous pouvez maintenant vous connecter."
 
 #: member/templates/member/password_reset_complete.html:12
 msgid "Log in"
@@ -274,19 +274,23 @@ msgid ""
 "used.  Please request a new password reset."
 msgstr ""
 "Le lien de réinitialisation du mot de passe est invalide, probablement parcequ'il a déjà "
-"été utilisé.  Merci de redemander la réinitialisation."
+"été utilisé. Merci de redemander la réinitialisation."
 
 #: member/templates/member/password_reset_done.html:11
 msgid ""
 "We've emailed you instructions for setting your password, if an account "
 "exists with the email you entered. You should receive them shortly."
 msgstr ""
+"Nous vous avons envoyé les instructions pour changer de mot de passe par email, si il existe "
+"bien un compte avec l'adresse électronique que vous avez entré. Vous devriez les recevoir sous peu."
 
 #: member/templates/member/password_reset_done.html:12
 msgid ""
 "If you don't receive an email, please make sure you've entered the address "
 "you registered with, and check your spam folder."
 msgstr ""
+"Si vous ne recevez pas d'email, merci de vérifier que vous avez entré l'adresse avec laquelle "
+"vous avez créé un compte et vérifiez vos courriers indésirables."
 
 #: member/templates/member/register.html:22
 msgid "Welcome"
@@ -310,25 +314,27 @@ msgstr "Allemand"
 
 #: shell/templates/404.html:4 shell/templates/404.html:9
 msgid "Page not found"
-msgstr ""
+msgstr "Page non trouvée"
 
 #: shell/templates/404.html:10
 msgid "We're sorry, but the requested page could not be found."
-msgstr ""
+msgstr "Nous somme désolés mais la page demandée n'a pas pu être trouvée."
 
 #: shell/templates/500.html:4
 msgid "Server error (500)"
-msgstr ""
+msgstr "Erreur serveur (500)"
 
 #: shell/templates/500.html:9
 msgid "Server Error <em>(500)</em>"
-msgstr ""
+msgstr "Erreur serveur <em>(500)</em>"
 
 #: shell/templates/500.html:10
 msgid ""
 "There's been an error. It's been reported to the site administrators via "
 "email and should be fixed shortly. Thanks for your patience."
 msgstr ""
+"Il y a eu une erreur. Elle a été rapportée aux administrateurs du site par "
+"email et devrait être corrigée d'ici peu. Merci de votre patience."
 
 #: shell/templates/shell/base.html:105
 msgid "or"
@@ -340,7 +346,7 @@ msgstr "Page Facebook"
 
 #: shell/templates/shell/base.html:135
 msgid "Facebook Messenger"
-msgstr ""
+msgstr "Facebook Messenger"
 
 #: shell/templates/shell/base.html:142
 msgid "Mastodon social network"
@@ -348,7 +354,7 @@ msgstr "Réseau social Mastodon"
 
 #: shell/templates/shell/base.html:149
 msgid "Source Code on Github"
-msgstr "Code source chez GitHub"
+msgstr "Code source sur GitHub"
 
 #: shell/templates/shell/base.html:156
 msgid "Buy me a coffee support page"
@@ -480,7 +486,7 @@ msgstr "Ce trail est privé"
 
 #: trail/templates/trail/tag_trail_preview.html:18
 msgid "Map of the trail: "
-msgstr "Carte du trail: "
+msgstr "Carte du trail : "
 
 #: trail/views.py:99 trail/views.py:155
 msgid "Trail does not exist"
@@ -488,11 +494,11 @@ msgstr "Le trail est introuvable"
 
 #: trail/views.py:116
 msgid "Elevation and Speed"
-msgstr "Elévation et Vitesse"
+msgstr "Élévation et Vitesse"
 
 #: trail/views.py:118 trail/views.py:130
 msgid "Elevation"
-msgstr "Elévation"
+msgstr "Élévation"
 
 #: trail/views.py:128 trail/views.py:131
 msgid "Speed"
@@ -506,7 +512,7 @@ msgstr "L'index du circuit est hors de portée"
 #~ msgstr "Mise à jour depuis le GPX"
 
 #~ msgid "My favorites"
-#~ msgstr "Mes Favoris"
+#~ msgstr "Mes favoris"
 
 #~ msgid "Edit"
-#~ msgstr "Editer"
+#~ msgstr "Modifier"
