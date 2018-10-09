@@ -238,7 +238,6 @@ msgstr "Adresse électronique :"
 
 #: member/templates/member/password_reset.html:21
 msgid "Reset my password"
-msgid "Reset my password"
 msgstr "Réinitialiser mon mot de passe"
 
 #: member/templates/member/password_reset_complete.html:11
