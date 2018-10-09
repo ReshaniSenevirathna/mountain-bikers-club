@@ -93,9 +93,13 @@
                                     <use xlink:href="#calendar"></use>
                                 </svg>
                                 <span class="is-visually-hidden">{% trans 'Start date and time' %}:</span>
-                                {% timezone track.timezone %}
+                                {% if trail.timezone %}
+                                    {% timezone track.timezone %}
+                                        {{ track.start_datetime|parse_time|date:"SHORT_DATE_FORMAT" }}
+                                    {% endtimezone %}
+                                {% else %}
                                     {{ track.start_datetime|parse_time|date:"SHORT_DATE_FORMAT" }}
-                                {% endtimezone %}
+                                {% endif %}
                             </li>
                             <!-- weather -->
                         </ul>
