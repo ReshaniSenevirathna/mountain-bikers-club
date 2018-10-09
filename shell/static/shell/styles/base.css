@@ -1,12 +1,16 @@
 /**
  * @license
- * MyFonts Webfont Build ID 3626458, 2018-08-24T02:35:04-0400
+ * MyFonts Webfont Build ID 3652973, 2018-10-09T04:49:01-0400
  *
  * The fonts listed in this notice are subject to the End User License
  * Agreement(s) entered into by the website owner. All other parties are
  * explicitly restricted from using the Licensed Webfonts(s).
  *
  * You may obtain a valid license at the URLs below.
+ *
+ * Webfont: EssentialPragmataPro by FSD
+ * URL: https://www.myfonts.com/fonts/fsd/essential-pragmata-pro/regular/
+ * Copyright: Copyright (c) 2009 by Fabrizio Schiavi - http://www.fsd.it/. All rights reserved.
  *
  * Webfont: UniNeueHeavy by Fontfabric
  * URL: https://www.myfonts.com/fonts/font-fabric/uni-neue/heavy/
@@ -21,28 +25,34 @@
  * Copyright: Copyright (c) 2016 by FontfabricLLC. All rights reserved.
  *
  *
- * License: https://www.myfonts.com/viewlicense?type=web&buildid=3626458
+ * License: https://www.myfonts.com/viewlicense?type=web&buildid=3652973
  * Licensed pageviews: 10,000
  *
  * © 2018 MyFonts Inc
 */
 
 @font-face {
+    font-family: 'PragmataPro';
+    src: url('../webfonts/37BD6D_0_0.woff2') format('woff2');
+    font-weight: 500;
+}
+
+@font-face {
     font-family: 'UniNeue';
-    src: url('../webfonts/3755DA_0_0.woff2') format('woff2');
+    src: url('../webfonts/37BD6D_1_0.woff2') format('woff2');
     font-weight: 800;
 }
 
 @font-face {
     font-family: 'UniNeue';
-    src: url('../webfonts/3755DA_1_0.woff2') format('woff2');
+    src: url('../webfonts/37BD6D_2_0.woff2') format('woff2');
     font-weight: 300;
 }
 
 @font-face {
     font-family: 'UniNeue';
-    src: url('../webfonts/3755DA_2_0.woff2') format('woff2');
-    font-weight: 500
+    src: url('../webfonts/37BD6D_3_0.woff2') format('woff2');
+    font-weight: 500;
 }
 
 

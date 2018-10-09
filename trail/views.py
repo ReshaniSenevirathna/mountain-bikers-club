@@ -114,7 +114,7 @@ def main(request, trail_id):
                 tooltips=[
                     ("distance", "@distance{%4.2f km}"),
                     ("elevation", "@elevation{%5d m}"),
-                    ("speed", "@speed{%3d km/h}"),
+                    ("speed", "@speed{%3.1f km/h}"),
                 ],
                 formatters={
                     'distance': 'printf',
@@ -162,15 +162,13 @@ def main(request, trail_id):
             # http://bokeh.pydata.org/en/latest/docs/user_guide/styling.html
             plot.border_fill_color = '#2d2d2d'
             plot.background_fill_color = '#393939'
-
             plot.outline_line_color = 'black'
 
             plot.xaxis.major_label_text_color = '#d3d0c8'
-            plot.xaxis.axis_label_text_color = '#d3d0c8'
             plot.yaxis[0].major_label_text_color = '#3d85cc'
-            plot.yaxis[0].axis_label_text_color = '#3d85cc'
             plot.yaxis[1].major_label_text_color = '#66cc66'
-            plot.yaxis[1].axis_label_text_color = '#66cc66'
+            plot.xaxis.major_label_text_font = 'UniNeue'
+            plot.yaxis.major_label_text_font = 'UniNeue'
 
             plot.xgrid.grid_line_color = '#515151'
             plot.xgrid.grid_line_dash = [6, 4]
@@ -188,6 +186,7 @@ def main(request, trail_id):
 
             plot.legend.location = 'top_left'
             # plot.legend.orientation = 'horizontal'
+            plot.legend.label_text_font = "UniNeue"
             plot.legend.label_text_color = '#a09f93'
             plot.legend.border_line_color = '#515151'
             plot.legend.background_fill_color = '#2d2d2d'

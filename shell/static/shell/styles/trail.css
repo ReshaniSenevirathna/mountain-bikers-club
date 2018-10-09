@@ -181,7 +181,7 @@
 .trail-map__chart .bk-tooltip {
     border-color: black !important;
     background: var(--base00) !important;
-    font-family: monospace !important;
+    font-family: 'PragmataPro', monospace !important;
     z-index: 1;
 }
 
