@@ -8,8 +8,10 @@
         <div class="o-group is-large">
             <div class="o-flex-inline has-gutter">
                 <div class="cell-2of3">
-                    <h1>Delete {{ object.username }}'s account</h1>
-                    <p>Are you sure you want to delete your account?</p>
+                    <h1>{% blocktrans trimmed with username=object.username %}
+                        Delete {{ username }}'s account
+                    {% endblocktrans %}</h1>
+                    <p>{% trans 'Are you sure you want to delete your account?' %}</p>
                     <form method="post" class="django__form">
                         {% csrf_token %}
                         <div class="o-flex-inline has-horizontal-gutter">

@@ -1,14 +1,14 @@
 {% extends 'shell/base.html' %}
 {% load static i18n tpl_button tpl_trail_preview %}
 
-{% block title %}Edit a GPX file{% endblock %}
+{% block title %}Edit a trail{% endblock %}
 
 {% block content %}
     <div class="o-section">
         <div class="o-group is-large">
             <div class="o-flex-inline has-gutter">
                 <div class="cell-2of3">
-                    <h1>Edit {{ trail.name|default:'' }}</h1>
+                    <h1>Edit {{ trail.name|default:'Unnamed trail' }}</h1>
                     <form action="{% url 'trail__edit' trail.id %}" method="post">
                         {% csrf_token %}
                         <ul class="django__form__list">
