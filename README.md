@@ -1,27 +1,52 @@
 # Mountain Bikers Club
 ## Technologies
-- The application runs with Django and PostgreSQL.
-- The maps are build with Leaflet.
-- The JavaScript is built on top of [my JS library](https://www.cedeber.fr), which is open source too.
+- The application runs with Django, Celery, PostgreSQL and Redis.
+- The maps are build with Leaflet and OpenStreetMap.
+- The graphs are build thanks to Bokeh.
+- The JavaScript and CSS are built on top of [my frontend library](https://github.com/cedeber/frontend-library).
 
 ## Browsers support
-I am not going to do Progressive enhancement. Mountain Bikers Club is a side project and nearly all modern browsers offer the support of what is needed:
+Mountain Bikers Club doesn't support legacy browsers.
+
+These are the minimun requirements (JavaScript is not mandatory):
 - CSS variables
 - CSS Grid
-- ES 2017 support at minimun, as the app is loaded as an ES Module, which includes all API released before ES 2017.
-- Web Component and Shadow DOM (later this year with Firefox 63)
+- ES 2017 support at minimun, as the app is loaded as an ES Module,
+  which includes all API released before ES 2017.
+- Web Component and Shadow DOM
 
 ## Hosting
 - The website and the database are hosted on Heroku.
-- The user's files (GPX, photos, ...) are uploaded and served via Amazon Web Service S3.
-- The DNS is managed on Cloudflare.
-- The map tiles come from OpenTopoMap.
+- The user's files are uploaded and served via the Amazon Web Service S3.
+- The DNS and the SSL certificate are managed through Cloudflare.
+- The map tiles come from Komoot, OpenTopoMap and OpenCycleMap.
 
 ## Privacy
-When I started to code websites in 1998, we were used to listen to people's feedbacks. This is the web I love.
-I am not going to install any script that do statistics.
+When I started to code websites in '98, we were used to listen to people's feedbacks.
+This is the web I love. I am not going to install any script that do neither
+statistics nor ads. As you may have noticed there is no Cookie banner.
+It's not a mistake!
 
-# Support
-The hosting on Heroku and AWS S3 are not free and I code this app during my free time. Having ads on the website is not an option. If you want to support the development of the app, you can send me some money via Buy Me A Coffee.
+## Stay In Touch
+- [Mastodon](https://mastodon.social/@cedeber)
+- [Facebook](https://fb.me/mountainbikersclub)
+
+## Contribution
+
+Please make sure to read the [Contributing Guide](CONTRIBUTING.md) before making
+a pull request.
+
+Thank you to all [the people who already contributed to Mountain Bikers Club](https://github.com/cedeber/mountain-bikers-club/graphs/contributors)!
+
+## Financial Contribution
+The hosting on Heroku and AWS S3 are not free. If you want to support the development
+of the app, you can send me some money via Buy Me A Coffee.
 
 [![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/cedeber)
+
+
+## License
+
+[GPL-3.0](LICENSE)
+
+Copyright (c) 2018, Cédric Eberhardt
