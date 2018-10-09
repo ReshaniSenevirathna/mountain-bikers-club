@@ -178,6 +178,28 @@
     border-bottom-color: var(--blue) !important;
 }
 
+.trail-map__chart .bk-tooltip {
+    border-color: black !important;
+    background: var(--base00) !important;
+    font-family: monospace !important;
+    z-index: 1;
+}
+
+.trail-map__chart .bk-tooltip.bk-left::before {
+    border-right-color: black !important;
+}
+
+.trail-map__chart .bk-tooltip.bk-right::after {
+    border-left-color: black !important;
+}
+
+.trail-map__chart .bk-tooltip-row-label {
+    color: var(--blue) !important;
+}
+
+.trail-map__chart .bk-tooltip-row-value {
+    color: var(--green) !important;
+}
 
 /* --- Leaflet --- */
 

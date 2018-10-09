@@ -8,10 +8,10 @@ from django.urls import reverse, reverse_lazy
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.utils.translation import gettext as _
-from bokeh.plotting import figure
+from bokeh.plotting import figure, ColumnDataSource
 from bokeh.embed import components
+from bokeh.models import HoverTool
 from django.views.generic import DeleteView
-from scipy.signal import savgol_filter
 
 from .forms import GpxUploadForm, GpxEditForm
 from .models import Trail
@@ -110,25 +110,53 @@ def main(request, trail_id):
             y_elevation = list(map(lambda p: p['elevation'], track['points']))
             y_speed = list(map(lambda p: p['speed'], track['points']))
 
+            hover = HoverTool(
+                tooltips=[
+                    ("distance", "@distance{%4.2f km}"),
+                    ("elevation", "@elevation{%5d m}"),
+                    ("speed", "@speed{%3d km/h}"),
+                ],
+                formatters={
+                    'distance': 'printf',
+                    'elevation': 'printf',
+                    'speed': 'printf',
+                },
+                mode='vline'
+            )
+
             plot = figure(
-                tools='crosshair,pan,wheel_zoom,box_zoom,reset,save',
+                tools='xpan,xwheel_zoom,xwheel_pan,xzoom_in,xzoom_out,reset,crosshair',
                 toolbar_location='above',
                 sizing_mode='scale_width',
                 plot_width=1100,
-                plot_height=400,
+                plot_height=320,
             )
 
+            plot.add_tools(hover)
+
+            plot.x_range = Range1d(start=0, end=x_distance[-1])
             plot.y_range = Range1d(start=min(y_elevation) - 30, end=max(y_elevation) + 30)
             plot.extra_y_ranges['speed'] = Range1d(start=min(y_speed), end=max(y_speed) + 3)
-            plot.add_layout(LinearAxis(y_range_name='speed'), 'right')
+            plot.add_layout(LinearAxis(y_range_name='speed'), 'left')
 
-            plot.line(x_distance, y_elevation, legend=_('Elevation'), line_width=3, color='#3d85cc')
-            plot.line(x_distance, savgol_filter(y_speed, 101, 9), legend=_('Speed'), line_width=1,
-                      y_range_name='speed', color='#66cc66')
+            source = ColumnDataSource(data=dict(
+                distance=x_distance,
+                elevation=y_elevation,
+                speed=y_speed,
+            ))
+            plot.line('distance', 'elevation', source=source, line_width=3, color='#3d85cc', alpha=0.17)
 
-            plot.xaxis[0].formatter = PrintfTickFormatter(format='%4.0d km')
-            plot.yaxis[0].formatter = PrintfTickFormatter(format='%5.0d m')
-            plot.yaxis[1].formatter = PrintfTickFormatter(format='%3.0d km/h')
+            end_patch = min(y_elevation) - 30
+            x_patch = [x_distance[0]] + x_distance + [x_distance[-1]]
+            y_patch = [end_patch] + y_elevation + [end_patch]
+            plot.patch(x_patch, y_patch, legend=_('Elevation'), color='#3d85cc', alpha=0.8)
+
+            y_patch = [0.] + y_speed + [0.]
+            plot.patch(x_patch, y_patch, y_range_name='speed', legend=_('Speed'), color='#66cc66', alpha=0.5)
+
+            plot.xaxis[0].formatter = PrintfTickFormatter(format='%4.1f km')
+            plot.yaxis[0].formatter = PrintfTickFormatter(format='%5d m')
+            plot.yaxis[1].formatter = PrintfTickFormatter(format='%3d km/h')
 
             # Styling
             # http://bokeh.pydata.org/en/latest/docs/user_guide/styling.html
@@ -210,4 +238,6 @@ def tile(request, z, x, y):
     if r.status_code != 200:
         r = requests.get(url_cycle, timeout=60)
 
-    return HttpResponse(r.content, content_type='image/png')
+    content = r.content if r.status_code == 200 else None
+
+    return HttpResponse(content, content_type='image/png')
