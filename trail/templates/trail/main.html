@@ -10,6 +10,7 @@
 {% block social %}
     {% if not trail.is_draft and trail.tracks and trail.tracks|length > 0 %}
         {% with trail.tracks|first as track %}
+            {% trans 'Unnamed trail' as trail_noname %}
             <meta property="og:title"
                   content="{{ trail.name|default:trail_noname }}{% if track.location %} ・ {{ track.location }}{% endif %}">
             <meta property="og:description"
