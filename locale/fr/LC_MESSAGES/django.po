@@ -315,7 +315,7 @@ msgstr "Supprimer le compte de %(username)s"
 
 #: member/templates/member/user_confirm_delete.html:14
 msgid "Are you sure you want to delete your account?"
-msgstr "Êtes-vous sûr˙˙˙·e de vouloir supprimer votre compte ?"
+msgstr "Êtes-vous sûr·e de vouloir supprimer votre compte ?"
 
 #: member/templates/member/user_confirm_delete.html:19
 #: trail/templates/trail/trail_confirm_delete.html:27
@@ -535,7 +535,7 @@ msgstr "Supprimer %(trail_name)s"
 #: trail/templates/trail/trail_confirm_delete.html:20
 #, python-format
 msgid "Are you sure you want to delete \"%(trail_name)s\"?"
-msgstr "Êtes-vous sûr˙˙˙·e de vouloir supprimer \"%(trail_name)s\" ?"
+msgstr "Êtes-vous sûr·e de vouloir supprimer \"%(trail_name)s\" ?"
 
 #: trail/views.py:101 trail/views.py:218
 msgid "Trail does not exist"
