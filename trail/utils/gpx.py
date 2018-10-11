@@ -1,6 +1,8 @@
 import math
 import xml.etree.ElementTree as ET
 import re
+from io import StringIO
+
 import requests
 
 from dateutil.parser import parse as parse_time
@@ -168,6 +170,18 @@ def parse(xml):
 
     # Remove namespace to ease nodes selection
     gpx_xml = re.sub(' xmlns="[^"]+"', '', xml, count=1)
+
+    # find namespace for http://www.garmin.com/xmlschemas/TrackPointExtension/v1
+    my_namespaces = dict([
+        node for _, node in ET.iterparse(
+            StringIO(gpx_xml), events=['start-ns']
+        )
+    ])
+    try:
+        track_point_extension_ns_prefix = list(my_namespaces.keys())[list(my_namespaces.values()).index('http://www.garmin.com/xmlschemas/TrackPointExtension/v1')]
+    except ValueError:
+        track_point_extension_ns_prefix = None
+
     root = ET.fromstring(gpx_xml)
 
     if root.tag != 'gpx' and root.attrib['version'] != '1.1':
@@ -189,13 +203,26 @@ def parse(xml):
             for point in points:
                 elevation = point.find('ele')
                 time = point.find('time')
+                temperature = None
+                heart_rate = None
+                cadence = None
 
-                # TODO parse extensions
+                if track_point_extension_ns_prefix is not None:
+                    extensions = point.find('extensions/{}:TrackPointExtension'.format(track_point_extension_ns_prefix), my_namespaces)
+
+                    if extensions is not None:
+                        temperature = extensions.find('{}:atemp'.format(track_point_extension_ns_prefix), my_namespaces)
+                        heart_rate = extensions.find('{}:hr'.format(track_point_extension_ns_prefix), my_namespaces)
+                        cadence = extensions.find('{}:cad'.format(track_point_extension_ns_prefix), my_namespaces)
+
                 current_point = {
                     'latitude': float(point.attrib['lat']),
                     'longitude': float(point.attrib['lon']),
-                    'elevation': float(elevation.text) if elevation is not None else None,
+                    'elevation': float(elevation.text) if elevation is not None else 0.,
                     'time': time.text if time is not None else None,
+                    'temperature': float(temperature.text) if temperature is not None else 0.,
+                    'heart_rate': float(heart_rate.text) if heart_rate is not None else 0.,
+                    'cadence': float(cadence.text) if cadence is not None else 0.,
                 }
 
                 parsed_points.append(current_point)
