@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-05 06:27+0000\n"
+"POT-Creation-Date: 2018-10-11 17:24+0000\n"
 "PO-Revision-Date: 2018-08-22 15:06+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -33,7 +33,7 @@ msgstr "Mes derniers trails"
 
 #: dashboard/templates/dashboard/index.html:27
 #: shell/templates/shell/member_headerlinks.html:37
-#: trail/templates/trail/new.html:11
+#: trail/templates/trail/new.html:4 trail/templates/trail/new.html:11
 msgid "Upload a GPX file"
 msgstr "Charger un fichier GPX"
 
@@ -124,7 +124,7 @@ msgstr "Permissions"
 
 #: member/forms.py:34 member/forms.py:57
 msgid "This username is forbidden."
-msgstr "Ce nom d'utilisateur est interdit."
+msgstr "Ce nom d'utilisateur·trice est interdit."
 
 #: member/models.py:10
 msgid "email address"
@@ -136,7 +136,7 @@ msgstr "Requis. Pas de conneries, promis."
 
 #: member/models.py:15
 msgid "A user with that email address already exists."
-msgstr "Un utilisateur avec cette adresse électronique existe déjà."
+msgstr "Un·e utilisateur·trice avec cette adresse électronique existe déjà."
 
 #: member/models.py:19
 msgid "Premium member"
@@ -151,14 +151,16 @@ msgstr "Premium jusqu'au"
 msgid "Edit profile"
 msgstr "Modifier le profil"
 
-#: member/templates/member/edit.html:18 trail/templates/trail/edit.html:19
+#: member/templates/member/edit.html:18 trail/templates/trail/edit.html:27
 #: trail/templates/trail/new.html:17
 msgid "Save"
 msgstr "Sauvegarder"
 
 #: member/templates/member/edit.html:22
 #: member/templates/member/password_change.html:23
-#: trail/templates/trail/edit.html:23
+#: member/templates/member/user_confirm_delete.html:23
+#: trail/templates/trail/edit.html:31
+#: trail/templates/trail/trail_confirm_delete.html:31
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -167,7 +169,7 @@ msgid "Login"
 msgstr "Se connecter"
 
 #: member/templates/member/login.html:24
-msgid "Forgotten your password?"
+msgid "Forgot your password?"
 msgstr "Mot de passe perdu ?"
 
 #: member/templates/member/main.html:5 member/templates/member/main.html:14
@@ -202,8 +204,9 @@ msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
 msgstr ""
-"Pour des raisons de sécurité, entrez votre ancien mot de passe, puis le nouveau "
-"mot de passe deux fois pour vérifier qu'il est correctement renseigné."
+"Pour des raisons de sécurité, entrez votre ancien mot de passe, puis le "
+"nouveau mot de passe deux fois pour vérifier qu'il est correctement "
+"renseigné."
 
 #: member/templates/member/password_change.html:19
 #: member/templates/member/password_reset_confirm.html:27
@@ -226,11 +229,11 @@ msgstr "Réinitialiser le mot de passer"
 
 #: member/templates/member/password_reset.html:11
 msgid ""
-"Forgotten your password? Enter your email address below, and we'll email "
+"Forgot your password? Enter your email address below, and we'll email "
 "instructions for setting a new one."
 msgstr ""
-"Mot de passe oublié ? Entrez votre adresse électronique ci-dessous et vous recevrez "
-"les instructions pour avoir un nouveau mot de passe."
+"Mot de passe oublié ? Entrez votre adresse électronique ci-dessous et vous "
+"recevrez les instructions pour avoir un nouveau mot de passe."
 
 #: member/templates/member/password_reset.html:17
 msgid "Email address:"
@@ -241,8 +244,10 @@ msgid "Reset my password"
 msgstr "Réinitialiser mon mot de passe"
 
 #: member/templates/member/password_reset_complete.html:11
-msgid "Your password has been set.  You may go ahead and log in now."
-msgstr "Votre nouveau mot de passe est en place. Vous pouvez maintenant vous connecter."
+msgid "Your password has been set. You may go ahead and log in now."
+msgstr ""
+"Votre nouveau mot de passe est en place. Vous pouvez maintenant vous "
+"connecter."
 
 #: member/templates/member/password_reset_complete.html:12
 msgid "Log in"
@@ -271,26 +276,29 @@ msgstr "Confirmer le mot de passe :"
 #: member/templates/member/password_reset_confirm.html:31
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
-"used.  Please request a new password reset."
+"used. Please request a new password reset."
 msgstr ""
-"Le lien de réinitialisation du mot de passe est invalide, probablement parcequ'il a déjà "
-"été utilisé. Merci de redemander la réinitialisation."
+"Le lien de réinitialisation du mot de passe est invalide, probablement "
+"parcequ'il a déjà été utilisé. Merci de redemander la réinitialisation."
 
 #: member/templates/member/password_reset_done.html:11
 msgid ""
-"We've emailed you instructions for setting your password, if an account "
-"exists with the email you entered. You should receive them shortly."
+"If an account exists with the email you entered, we will email you "
+"instructrions for resetting your password. You should receive the email "
+"shortly."
 msgstr ""
-"Nous vous avons envoyé les instructions pour changer de mot de passe par email, si il existe "
-"bien un compte avec l'adresse électronique que vous avez entré. Vous devriez les recevoir sous peu."
+"Nous vous avons envoyé les instructions pour changer de mot de passe par "
+"email, si il existe bien un compte avec l'adresse électronique que vous avez "
+"entré. Vous devriez les recevoir sous peu."
 
 #: member/templates/member/password_reset_done.html:12
 msgid ""
 "If you don't receive an email, please make sure you've entered the address "
 "you registered with, and check your spam folder."
 msgstr ""
-"Si vous ne recevez pas d'email, merci de vérifier que vous avez entré l'adresse avec laquelle "
-"vous avez créé un compte et vérifiez vos courriers indésirables."
+"Si vous ne recevez pas d'email, merci de vérifier que vous avez entré "
+"l'adresse avec laquelle vous avez créé un compte et vérifiez vos courriers "
+"indésirables."
 
 #: member/templates/member/register.html:22
 msgid "Welcome"
@@ -299,6 +307,20 @@ msgstr "Bienvenue"
 #: member/templates/member/register.html:23
 msgid "Welcome to the Mountain Bikers Club."
 msgstr "Bienvenue au Mountain Bikers Club."
+
+#: member/templates/member/user_confirm_delete.html:11
+#, python-format
+msgid "Delete %(username)s's account"
+msgstr "Supprimer le compte de %(username)s"
+
+#: member/templates/member/user_confirm_delete.html:14
+msgid "Are you sure you want to delete your account?"
+msgstr "Êtes-vous sûr˙˙˙·e de vouloir supprimer votre compte ?"
+
+#: member/templates/member/user_confirm_delete.html:19
+#: trail/templates/trail/trail_confirm_delete.html:27
+msgid "Yes, I am sure!"
+msgstr "Oui, je suis sûr·e!"
 
 #: mountainbikers/settings.py:154
 msgid "French"
@@ -404,70 +426,85 @@ msgstr "Description"
 msgid "GPX file"
 msgstr "Fichier GPX"
 
-#: trail/tasks.py:75 trail/templates/trail/main.html:31
-msgid "Unnamed Trail"
+#: trail/tasks.py:75 trail/templates/trail/edit.html:5
+#: trail/templates/trail/edit.html:16 trail/templates/trail/main.html:5
+#: trail/templates/trail/main.html:34
+#: trail/templates/trail/tag_trail_preview.html:9
+#: trail/templates/trail/trail_confirm_delete.html:5
+#: trail/templates/trail/trail_confirm_delete.html:16
+msgid "Unnamed trail"
 msgstr "Trail sans nom"
 
-#: trail/templates/trail/main.html:13 trail/templates/trail/main.html:106
-#: trail/templates/trail/tag_trail_preview.html:38 trail/views.py:117
+#: trail/templates/trail/edit.html:6 trail/templates/trail/edit.html:17
+#, python-format
+msgid "Edit %(trail_name)s"
+msgstr "Modifier %(trail_name)s"
+
+#: trail/templates/trail/edit.html:39
+#: trail/templates/trail/trail_confirm_delete.html:39
+msgid "Map"
+msgstr "Carte"
+
+#: trail/templates/trail/main.html:16 trail/templates/trail/main.html:115
+#: trail/templates/trail/tag_trail_preview.html:39
 msgid "Distance"
 msgstr "Distance"
 
-#: trail/templates/trail/main.html:13
+#: trail/templates/trail/main.html:16
 msgid "Duration"
 msgstr "Durée"
 
-#: trail/templates/trail/main.html:13 trail/templates/trail/main.html:113
-#: trail/templates/trail/tag_trail_preview.html:45
+#: trail/templates/trail/main.html:16 trail/templates/trail/main.html:122
+#: trail/templates/trail/tag_trail_preview.html:46
 msgid "Uphill"
 msgstr "Montée"
 
-#: trail/templates/trail/main.html:40
+#: trail/templates/trail/main.html:43
 #, python-format
 msgid "Published by <a href=\"%(link)s\">@%(user)s</a> on %(date)s."
 msgstr "Publié par <a href=\"%(link)s\">@%(user)s</a> le %(date)s."
 
-#: trail/templates/trail/main.html:60
+#: trail/templates/trail/main.html:63
 msgid "Edit trail"
 msgstr "Modifier le trail"
 
-#: trail/templates/trail/main.html:74
-#: trail/templates/trail/tag_trail_preview.html:31
+#: trail/templates/trail/main.html:77
+#: trail/templates/trail/tag_trail_preview.html:32
 msgid "Location"
 msgstr "Lieu"
 
-#: trail/templates/trail/main.html:81
+#: trail/templates/trail/main.html:84
 msgid "Minimum altitude"
 msgstr "Altitude minimale"
 
-#: trail/templates/trail/main.html:88
+#: trail/templates/trail/main.html:91
 msgid "Maximun altidtude"
 msgstr "Altitude maximale"
 
-#: trail/templates/trail/main.html:95
+#: trail/templates/trail/main.html:98
 msgid "Start date and time"
 msgstr "Date et heure de départ"
 
-#: trail/templates/trail/main.html:120
+#: trail/templates/trail/main.html:129
 msgid "Moving time"
 msgstr "Temps de déplacement"
 
-#: trail/templates/trail/main.html:127
+#: trail/templates/trail/main.html:136
 msgid "Average moving speed"
 msgstr "Vitesse moyenne de déplacement"
 
-#: trail/templates/trail/main.html:134
+#: trail/templates/trail/main.html:143
 msgid "Maximum speed"
 msgstr "Vitesse maximale"
 
-#: trail/templates/trail/main.html:143
+#: trail/templates/trail/main.html:152
 msgid "Analyzing..."
 msgstr "Analyse en cours..."
 
-#: trail/templates/trail/main.html:145
+#: trail/templates/trail/main.html:154
 #, python-format
 msgid ""
-"Your trail is currently analyzed. It will take a few minutes. Once "
+"Your trail is currently being analyzed. It will take a few minutes. Once "
 "completed, you will receive an email.<br> You can continue to navigate on "
 "Mountain Bikers Club or <a href=\"%(url_trail_new)s\">upload a new trail</a>."
 msgstr ""
@@ -476,37 +513,51 @@ msgstr ""
 "Vous pouvez continuer à naviger sur Mountain Bikers Club ou <a href="
 "\"%(url_trail_new)s\">enregistrer un nouveau trail</a>."
 
-#: trail/templates/trail/main.html:192
-msgid "Delete trail"
-msgstr "Supprimer le trail"
-
-#: trail/templates/trail/tag_trail_preview.html:11
-msgid "This trail is private"
-msgstr "Ce trail est privé"
-
-#: trail/templates/trail/tag_trail_preview.html:18
+#: trail/templates/trail/main.html:184
+#: trail/templates/trail/tag_trail_preview.html:19
 msgid "Map of the trail: "
 msgstr "Carte du trail : "
 
-#: trail/views.py:99 trail/views.py:155
+#: trail/templates/trail/main.html:202
+msgid "Delete trail"
+msgstr "Supprimer le trail"
+
+#: trail/templates/trail/tag_trail_preview.html:12
+msgid "This trail is private"
+msgstr "Ce trail est privé"
+
+#: trail/templates/trail/trail_confirm_delete.html:6
+#: trail/templates/trail/trail_confirm_delete.html:17
+#, python-format
+msgid "Delete %(trail_name)s"
+msgstr "Supprimer %(trail_name)s"
+
+#: trail/templates/trail/trail_confirm_delete.html:20
+#, python-format
+msgid "Are you sure you want to delete \"%(trail_name)s\"?"
+msgstr "Êtes-vous sûr˙˙˙·e de vouloir supprimer \"%(trail_name)s\" ?"
+
+#: trail/views.py:101 trail/views.py:218
 msgid "Trail does not exist"
 msgstr "Le trail est introuvable"
 
-#: trail/views.py:116
-msgid "Elevation and Speed"
-msgstr "Élévation et Vitesse"
-
-#: trail/views.py:118 trail/views.py:130
+#: trail/views.py:152
 msgid "Elevation"
 msgstr "Élévation"
 
-#: trail/views.py:128 trail/views.py:131
+#: trail/views.py:155
 msgid "Speed"
 msgstr "Vitesse"
 
-#: trail/views.py:160
+#: trail/views.py:223
 msgid "Track index is out of range"
 msgstr "L'index du circuit est hors de portée"
+
+#~ msgid "Unnamed Trail"
+#~ msgstr "Trail sans nom"
+
+#~ msgid "Elevation and Speed"
+#~ msgstr "Élévation et Vitesse"
 
 #~ msgid "Update from GPX"
 #~ msgstr "Mise à jour depuis le GPX"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-05 06:27+0000\n"
+"POT-Creation-Date: 2018-10-11 17:24+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -33,7 +33,7 @@ msgstr ""
 
 #: dashboard/templates/dashboard/index.html:27
 #: shell/templates/shell/member_headerlinks.html:37
-#: trail/templates/trail/new.html:11
+#: trail/templates/trail/new.html:4 trail/templates/trail/new.html:11
 msgid "Upload a GPX file"
 msgstr ""
 
@@ -95,9 +95,9 @@ msgstr ""
 "change anything in the website, don't hesitate to <a href=\"&#109;&#97;&#x69;"
 "&#x6c;&#116;&#x6f;&#x3a;&#104;&#101;&#x6c;&#x6c;&#111;&#64;&#109;&#111;&#117;"
 "&#110;&#116;&#x61;&#105;&#110;&#98;&#x69;&#x6b;&#x65;&#x72;&#115;&#x2e;&#99;"
-"&#108;&#x75;&#x62;\">send me a polite email</a>. I may not answer but I will "
-"read it!</p><p>Respect nature, plants and animals. Priority for walkers. "
-"Have fun!</p>"
+"&#108;&#x75;&#x62;\">send me a polite email</a>. I may not answer, but I "
+"will read it!</p><p>Respect nature, plants and animals. Priority for "
+"walkers. Have fun!</p>"
 
 #: discover/templates/discover/index.html:55
 #: member/templates/member/register.html:17 shell/templates/shell/base.html:106
@@ -149,14 +149,16 @@ msgstr ""
 msgid "Edit profile"
 msgstr ""
 
-#: member/templates/member/edit.html:18 trail/templates/trail/edit.html:19
+#: member/templates/member/edit.html:18 trail/templates/trail/edit.html:27
 #: trail/templates/trail/new.html:17
 msgid "Save"
 msgstr ""
 
 #: member/templates/member/edit.html:22
 #: member/templates/member/password_change.html:23
-#: trail/templates/trail/edit.html:23
+#: member/templates/member/user_confirm_delete.html:23
+#: trail/templates/trail/edit.html:31
+#: trail/templates/trail/trail_confirm_delete.html:31
 msgid "Cancel"
 msgstr ""
 
@@ -165,7 +167,7 @@ msgid "Login"
 msgstr ""
 
 #: member/templates/member/login.html:24
-msgid "Forgotten your password?"
+msgid "Forgot your password?"
 msgstr ""
 
 #: member/templates/member/main.html:5 member/templates/member/main.html:14
@@ -222,7 +224,7 @@ msgstr ""
 
 #: member/templates/member/password_reset.html:11
 msgid ""
-"Forgotten your password? Enter your email address below, and we'll email "
+"Forgot your password? Enter your email address below, and we'll email "
 "instructions for setting a new one."
 msgstr ""
 
@@ -235,7 +237,7 @@ msgid "Reset my password"
 msgstr ""
 
 #: member/templates/member/password_reset_complete.html:11
-msgid "Your password has been set.  You may go ahead and log in now."
+msgid "Your password has been set. You may go ahead and log in now."
 msgstr ""
 
 #: member/templates/member/password_reset_complete.html:12
@@ -263,13 +265,14 @@ msgstr ""
 #: member/templates/member/password_reset_confirm.html:31
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
-"used.  Please request a new password reset."
+"used. Please request a new password reset."
 msgstr ""
 
 #: member/templates/member/password_reset_done.html:11
 msgid ""
-"We've emailed you instructions for setting your password, if an account "
-"exists with the email you entered. You should receive them shortly."
+"If an account exists with the email you entered, we will email you "
+"instructrions for resetting your password. You should receive the email "
+"shortly."
 msgstr ""
 
 #: member/templates/member/password_reset_done.html:12
@@ -284,6 +287,20 @@ msgstr ""
 
 #: member/templates/member/register.html:23
 msgid "Welcome to the Mountain Bikers Club."
+msgstr ""
+
+#: member/templates/member/user_confirm_delete.html:11
+#, python-format
+msgid "Delete %(username)s's account"
+msgstr ""
+
+#: member/templates/member/user_confirm_delete.html:14
+msgid "Are you sure you want to delete your account?"
+msgstr ""
+
+#: member/templates/member/user_confirm_delete.html:19
+#: trail/templates/trail/trail_confirm_delete.html:27
+msgid "Yes, I am sure!"
 msgstr ""
 
 #: mountainbikers/settings.py:154
@@ -384,102 +401,125 @@ msgstr ""
 msgid "GPX file"
 msgstr ""
 
-#: trail/tasks.py:75 trail/templates/trail/main.html:31
-msgid "Unnamed Trail"
+#: trail/tasks.py:75 trail/templates/trail/edit.html:5
+#: trail/templates/trail/edit.html:16 trail/templates/trail/main.html:5
+#: trail/templates/trail/main.html:34
+#: trail/templates/trail/tag_trail_preview.html:9
+#: trail/templates/trail/trail_confirm_delete.html:5
+#: trail/templates/trail/trail_confirm_delete.html:16
+msgid "Unnamed trail"
 msgstr ""
 
-#: trail/templates/trail/main.html:13 trail/templates/trail/main.html:106
-#: trail/templates/trail/tag_trail_preview.html:38 trail/views.py:117
+#: trail/templates/trail/edit.html:6 trail/templates/trail/edit.html:17
+#, python-format
+msgid "Edit %(trail_name)s"
+msgstr ""
+
+#: trail/templates/trail/edit.html:39
+#: trail/templates/trail/trail_confirm_delete.html:39
+msgid "Map"
+msgstr ""
+
+#: trail/templates/trail/main.html:16 trail/templates/trail/main.html:115
+#: trail/templates/trail/tag_trail_preview.html:39
 msgid "Distance"
 msgstr ""
 
-#: trail/templates/trail/main.html:13
+#: trail/templates/trail/main.html:16
 msgid "Duration"
 msgstr ""
 
-#: trail/templates/trail/main.html:13 trail/templates/trail/main.html:113
-#: trail/templates/trail/tag_trail_preview.html:45
+#: trail/templates/trail/main.html:16 trail/templates/trail/main.html:122
+#: trail/templates/trail/tag_trail_preview.html:46
 msgid "Uphill"
 msgstr ""
 
-#: trail/templates/trail/main.html:40
+#: trail/templates/trail/main.html:43
 #, python-format
 msgid "Published by <a href=\"%(link)s\">@%(user)s</a> on %(date)s."
 msgstr ""
 
-#: trail/templates/trail/main.html:60
+#: trail/templates/trail/main.html:63
 msgid "Edit trail"
 msgstr ""
 
-#: trail/templates/trail/main.html:74
-#: trail/templates/trail/tag_trail_preview.html:31
+#: trail/templates/trail/main.html:77
+#: trail/templates/trail/tag_trail_preview.html:32
 msgid "Location"
 msgstr ""
 
-#: trail/templates/trail/main.html:81
+#: trail/templates/trail/main.html:84
 msgid "Minimum altitude"
 msgstr ""
 
-#: trail/templates/trail/main.html:88
+#: trail/templates/trail/main.html:91
 msgid "Maximun altidtude"
 msgstr ""
 
-#: trail/templates/trail/main.html:95
+#: trail/templates/trail/main.html:98
 msgid "Start date and time"
 msgstr ""
 
-#: trail/templates/trail/main.html:120
+#: trail/templates/trail/main.html:129
 msgid "Moving time"
 msgstr ""
 
-#: trail/templates/trail/main.html:127
+#: trail/templates/trail/main.html:136
 msgid "Average moving speed"
 msgstr ""
 
-#: trail/templates/trail/main.html:134
+#: trail/templates/trail/main.html:143
 msgid "Maximum speed"
 msgstr ""
 
-#: trail/templates/trail/main.html:143
+#: trail/templates/trail/main.html:152
 msgid "Analyzing..."
 msgstr ""
 
-#: trail/templates/trail/main.html:145
+#: trail/templates/trail/main.html:154
 #, python-format
 msgid ""
-"Your trail is currently analyzed. It will take a few minutes. Once "
+"Your trail is currently being analyzed. It will take a few minutes. Once "
 "completed, you will receive an email.<br> You can continue to navigate on "
 "Mountain Bikers Club or <a href=\"%(url_trail_new)s\">upload a new trail</a>."
 msgstr ""
 
-#: trail/templates/trail/main.html:192
-msgid "Delete trail"
-msgstr ""
-
-#: trail/templates/trail/tag_trail_preview.html:11
-msgid "This trail is private"
-msgstr ""
-
-#: trail/templates/trail/tag_trail_preview.html:18
+#: trail/templates/trail/main.html:184
+#: trail/templates/trail/tag_trail_preview.html:19
 msgid "Map of the trail: "
 msgstr ""
 
-#: trail/views.py:99 trail/views.py:155
+#: trail/templates/trail/main.html:202
+msgid "Delete trail"
+msgstr ""
+
+#: trail/templates/trail/tag_trail_preview.html:12
+msgid "This trail is private"
+msgstr ""
+
+#: trail/templates/trail/trail_confirm_delete.html:6
+#: trail/templates/trail/trail_confirm_delete.html:17
+#, python-format
+msgid "Delete %(trail_name)s"
+msgstr ""
+
+#: trail/templates/trail/trail_confirm_delete.html:20
+#, python-format
+msgid "Are you sure you want to delete \"%(trail_name)s\"?"
+msgstr ""
+
+#: trail/views.py:101 trail/views.py:218
 msgid "Trail does not exist"
 msgstr ""
 
-#: trail/views.py:116
-msgid "Elevation and Speed"
-msgstr ""
-
-#: trail/views.py:118 trail/views.py:130
+#: trail/views.py:152
 msgid "Elevation"
 msgstr ""
 
-#: trail/views.py:128 trail/views.py:131
+#: trail/views.py:155
 msgid "Speed"
 msgstr ""
 
-#: trail/views.py:160
+#: trail/views.py:223
 msgid "Track index is out of range"
 msgstr ""
