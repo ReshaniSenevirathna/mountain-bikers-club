@@ -1,15 +1,25 @@
 {% extends 'shell/base.html' %}
 {% load static i18n tpl_button tpl_trail_preview %}
 
-{% block title %}Delete {{ object.name }}{% endblock %}
+{% block title %}
+    {% trans 'Unnamed trail' as trail_noname %}
+    {% blocktrans trimmed with trail_name=trail.name|default:trail_noname %}
+        Delete {{ trail_name }}
+    {% endblocktrans %}
+{% endblock %}
 
 {% block content %}
     <div class="o-section">
         <div class="o-group is-large">
             <div class="o-flex-inline has-gutter">
                 <div class="cell-2of3">
-                    <h1>Delete {{ object.name|default:'Unamed trail' }}</h1>
-                    <p>Are you sure you want to delete "{{ object.name|default:'Unamed trail' }}"?</p>
+                    {% trans 'Unnamed trail' as trail_noname %}
+                    <h1>{% blocktrans trimmed with trail_name=trail.name|default:trail_noname %}
+                        Delete {{ trail_name }}
+                    {% endblocktrans %}</h1>
+                    <p>{% blocktrans trimmed with trail_name=trail.name|default:trail_noname %}
+                        Are you sure you want to delete "{{ trail_name }}"?
+                    {% endblocktrans %}</p>
                     <form method="post" class="django__form">
                         {% csrf_token %}
                         <div class="o-flex-inline has-horizontal-gutter">
@@ -26,7 +36,7 @@
                     </form>
                 </div>
                 <div class="cell-1of3">
-                    <h2>Map</h2>
+                    <h2>{% trans 'Map' %}</h2>
                     {% tpl_trail_preview object %}
                 </div>
             </div>

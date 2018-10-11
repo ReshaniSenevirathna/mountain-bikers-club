@@ -1,14 +1,17 @@
 {% extends 'shell/base.html' %}
 {% load tz static i18n tpl_button filter_gpx index %}
 
-{% block title %}{{ trail.name|default:'' }}{% endblock %}
+{% block title %}
+    {% trans 'Unnamed trail' as trail_noname %}
+    {{ trail.name|default:trail_noname }}
+{% endblock %}
 {% block description %}{{ trail.description|default:'' }}{% endblock %}
 
 {% block social %}
     {% if not trail.is_draft and trail.tracks and trail.tracks|length > 0 %}
         {% with trail.tracks|first as track %}
             <meta property="og:title"
-                  content="{{ trail.name|default:'Trail' }} ・ {{ track.location|default:'' }}">
+                  content="{{ trail.name|default:trail_noname }}{% if track.location %} ・ {{ track.location }}{% endif %}">
             <meta property="og:description"
                   content="{% trans 'Distance' %}: {{ track.distance|default:0|floatformat:"-2" }}km ・ {% trans 'Duration' %}: {{ track.moving_time|format_time }} ・ {% trans 'Uphill' %}: {{ track.uphill|default:0|floatformat:"0" }}m">
         {% endwith %}
@@ -17,7 +20,7 @@
         <meta property="og:locale" content="{{ LANGUAGE_CODE }}">
         <meta property="og:type" content="fitness.course">
 
-        {% if trail.thumbnail %}
+        {% if trail.hero and trail.hero.url %}
             <meta property="og:image" content="{{ trail.hero.url }}">
             <meta property="og:image:width" content="1280">
             <meta property="og:image:height" content="480">
@@ -79,14 +82,14 @@
                                     <use xlink:href="#enter-down"></use>
                                 </svg>
                                 <span class="is-visually-hidden">{% trans 'Minimum altitude' %}:</span>
-                                {{ track.min_altitude|floatformat:"0" }}m
+                                {{ track.min_altitude|floatformat:"0"|default:'n/a' }}m
                             </li>
                             <li class="is-left">
                                 <svg width="20" height="20" class="trail__icon" aria-hidden="true">
                                     <use xlink:href="#enter-up"></use>
                                 </svg>
                                 <span class="is-visually-hidden">{% trans 'Maximun altidtude' %}:</span>
-                                {{ track.max_altitude|floatformat:"0" }}m
+                                {{ track.max_altitude|floatformat:"0"|default:'n/a' }}m
                             </li>
                             <li class="is-left">
                                 <svg width="20" height="20" class="trail__icon" aria-hidden="true">
@@ -95,10 +98,10 @@
                                 <span class="is-visually-hidden">{% trans 'Start date and time' %}:</span>
                                 {% if trail.timezone %}
                                     {% timezone track.timezone %}
-                                        {{ track.start_datetime|parse_time|date:"SHORT_DATE_FORMAT" }}
+                                        {{ track.start_datetime|parse_time|date:"SHORT_DATE_FORMAT"|default:'n/a' }}
                                     {% endtimezone %}
                                 {% else %}
-                                    {{ track.start_datetime|parse_time|date:"SHORT_DATE_FORMAT" }}
+                                    {{ track.start_datetime|parse_time|date:"SHORT_DATE_FORMAT"|default:'n/a' }}
                                 {% endif %}
                             </li>
                             <!-- weather -->
@@ -110,35 +113,35 @@
                                     <use xlink:href="#distance"></use>
                                 </svg>
                                 <span class="is-visually-hidden">{% trans 'Distance' %}:</span>
-                                {{ track.distance|default:0|floatformat:"-2" }}km
+                                {{ track.distance|default:0|floatformat:"-2"|default:'n/a' }}km
                             </li>
                             <li class="is-left">
                                 <svg width="20" height="20" class="trail__icon" aria-hidden="true">
                                     <use xlink:href="#rocket"></use>
                                 </svg>
                                 <span class="is-visually-hidden">{% trans 'Uphill' %}:</span>
-                                {{ track.uphill|default:0|floatformat:"0" }}m
+                                {{ track.uphill|default:0|floatformat:"0"|default:'n/a' }}m
                             </li>
                             <li class="is-left">
                                 <svg width="20" height="20" class="trail__icon" aria-hidden="true">
                                     <use xlink:href="#time"></use>
                                 </svg>
                                 <span class="is-visually-hidden">{% trans 'Moving time' %}:</span>
-                                {{ track.moving_time|format_time }}
+                                {{ track.moving_time|format_time|default:'n/a' }}
                             </li>
                             <li class="is-left">
                                 <svg width="20" height="20" class="trail__icon" aria-hidden="true">
                                     <use xlink:href="#speed-medium"></use>
                                 </svg>
                                 <span class="is-visually-hidden">{% trans 'Average moving speed' %}:</span>
-                                {{ track.average_moving_speed|floatformat:"1" }}km/h
+                                {{ track.average_moving_speed|floatformat:"1"|default:'n/a' }}km/h
                             </li>
                             <li class="is-left">
                                 <svg width="20" height="20" class="trail__icon" aria-hidden="true">
                                     <use xlink:href="#speed-fast"></use>
                                 </svg>
                                 <span class="is-visually-hidden">{% trans 'Maximum speed' %}:</span>
-                                {{ track.max_speed|floatformat:"1" }}km/h
+                                {{ track.max_speed|floatformat:"1"|default:'n/a'}}km/h
                             </li>
                         </ul>
                     </div>
@@ -166,7 +169,7 @@
                 {% with trail_track as track %}
                     {% if trail.tracks|length > 1 %}
                         {% with n=forloop.counter|stringformat:"s" %}
-                            {% with 'Trail '|add:n as default_title %}
+                            {% with 'Track '|add:n as default_title %}
                                 <h2>{{ track.name|default:default_title }}</h2>
                             {% endwith %}
                         {% endwith %}
@@ -177,7 +180,7 @@
                                data-track="{{ forloop.counter0 }}">
                         {% if trail.thumbnail %}
                             <noscript>
-                                <img class="trail-map__fallback" src="{{ trail.hero.url }}">
+                                <img class="trail-map__fallback" src="{{ trail.hero.url }}" alt="{% trans 'Map of the trail: '|add:trail.name|default:'' %}">
                             </noscript>
                         {% endif %}
                     </trail-map>

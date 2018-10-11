@@ -6,7 +6,8 @@
         <div class="trail-preview has-no-hover">
     {% endif %}
     <div class="trail-preview__map">
-        <div class="trail-preview__title h3">{{ trail.name|default:'Unnamed trail' }}</div>
+        {% trans 'Unnamed trail' as trail_noname %}
+        <div class="trail-preview__title h3">{{ trail.name|default:trail_noname }}</div>
         {% if trail.is_private %}
             <div class="trail-preview__lock" aria-label="{% trans 'This trail is private' %}">
                 <svg width="15" height="15" aria-hidden="true">
@@ -29,21 +30,21 @@
                             <use xlink:href="#home"></use>
                         </svg>
                         <span class="is-visually-hidden">{% trans 'Location' %}:</span>
-                        {{ track.location|default:'n/a'|truncatechars:18 }}
+                        {{ track.location|truncatechars:18|default:'n/a' }}
                     </li>
                     <li class="is-center">
                         <svg width="15" height="15" class="trail__icon" aria-hidden="true">
                             <use xlink:href="#distance"></use>
                         </svg>
                         <span class="is-visually-hidden">{% trans 'Distance' %}:</span>
-                        {{ track.distance|default:0|floatformat }}km
+                        {{ track.distance|floatformat|default:'n/a' }}km
                     </li>
                     <li class="is-right">
                         <svg width="15" height="15" class="trail__icon" aria-hidden="true">
                             <use xlink:href="#rocket"></use>
                         </svg>
                         <span class="is-visually-hidden">{% trans 'Uphill' %}:</span>
-                        {{ track.uphill|default:0|floatformat:"0" }}m
+                        {{ track.uphill|floatformat:"0"|default:'n/a' }}m
                     </li>
                 </ul>
             {% endif %}
