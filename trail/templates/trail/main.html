@@ -141,7 +141,7 @@
                                     <use xlink:href="#speed-fast"></use>
                                 </svg>
                                 <span class="is-visually-hidden">{% trans 'Maximum speed' %}:</span>
-                                {{ track.max_speed|floatformat:"1"|default:'n/a'}}km/h
+                                {{ track.max_speed|floatformat:"1"|default:'n/a' }}km/h
                             </li>
                         </ul>
                     </div>
@@ -152,7 +152,7 @@
                 <h2>{% trans 'Analyzing...' %}</h2>
                 {% url 'trail__new' as url_trail_new %}
                 <p>{% blocktrans trimmed %}
-                    Your trail is currently analyzed. It will take a few minutes.
+                    Your trail is currently being analyzed. It will take a few minutes.
                     Once completed, you will receive an email.<br>
                     You can continue to navigate on Mountain Bikers Club or
                     <a href="{{ url_trail_new }}">upload a new trail</a>.
@@ -180,7 +180,8 @@
                                data-track="{{ forloop.counter0 }}">
                         {% if trail.thumbnail %}
                             <noscript>
-                                <img class="trail-map__fallback" src="{{ trail.hero.url }}" alt="{% trans 'Map of the trail: '|add:trail.name|default:'' %}">
+                                <img class="trail-map__fallback" src="{{ trail.hero.url }}"
+                                     alt="{% trans 'Map of the trail: '|add:trail.name|default:'' %}">
                             </noscript>
                         {% endif %}
                     </trail-map>
