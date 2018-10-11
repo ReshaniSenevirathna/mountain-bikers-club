@@ -1,7 +1,7 @@
 import io
 
 from django.urls import reverse
-from django.utils.translation import gettext_lazy as _
+from django.utils.translation import gettext as _
 from staticmap import StaticMap, Line
 
 from mountainbikers.celery import app
@@ -49,6 +49,7 @@ def create_staticmaps(trail_id, base_uri):
     current_trail.is_draft = False
     current_trail.save()
 
+    # TODO Translate
     to = mail(
         current_trail.name,
         'Your trail is ready.\n\n' +
@@ -71,7 +72,6 @@ def parse_gpx(trail_id, base_uri):
 
             first_track = tracks[0]
 
-            # FIXME gettext doesn't seem to work
             trail.name = name or first_track['name'] or _('Unnamed trail')
             trail.description = description or first_track['description'] or ''
             trail.tracks = tracks
