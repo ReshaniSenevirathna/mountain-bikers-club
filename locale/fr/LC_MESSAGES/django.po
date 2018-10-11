@@ -211,7 +211,7 @@ msgstr ""
 #: member/templates/member/password_change.html:19
 #: member/templates/member/password_reset_confirm.html:27
 msgid "Change my password"
-msgstr "Modifier mon mot de passer"
+msgstr "Modifier mon mot de passe"
 
 #: member/templates/member/password_change_done.html:4
 msgid "Password changed successfully."
