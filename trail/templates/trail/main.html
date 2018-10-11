@@ -31,7 +31,7 @@
 {% block content %}
     <div class="o-section">
         <div class="o-group is-large">
-            {% trans 'Unnamed Trail' as trail_noname %}
+            {% trans 'Unnamed trail' as trail_noname %}
             <h1 class="has-no-bottom-space">{{ trail.name|default:trail_noname }}</h1>
             <p class="trail__published has-hidden-links">
                 {% if trail.is_private %}

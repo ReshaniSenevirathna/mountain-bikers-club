@@ -72,7 +72,7 @@ def parse_gpx(trail_id, base_uri):
             first_track = tracks[0]
 
             # FIXME gettext doesn't seem to work
-            trail.name = name or first_track['name'] or _('Unnamed Trail')
+            trail.name = name or first_track['name'] or _('Unnamed trail')
             trail.description = description or first_track['description'] or ''
             trail.tracks = tracks
             trail.save()
