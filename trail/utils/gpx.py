@@ -130,9 +130,10 @@ def get_moving_data(parsed_points):
         if current_point['speed'] > 1 and n > 1 and current_time:
             previous_time = parse_time(parsed_points[n - 1]['time'])
             time = math.fabs((current_time - previous_time).total_seconds())
-            moving_time += time
 
-            moving_points.append(current_point)
+            if time < 60:
+                moving_time += time
+                moving_points.append(current_point)
 
     moving_distance = cheap_ruler_distance(moving_points) if len(moving_points) > 2 else 0.
 
@@ -145,29 +146,31 @@ def parse(xml):
     tf = TimezoneFinder()
 
     def __filter(n):
-        p = parsed_points[n]
+        cur_p = parsed_points[n]
+        last_p = parsed_points[n - 1]
         cheap_distance = 0
+        duration = 0.
+
+        if parsed_start_datetime is not None and cur_p['time'] is not None:
+            duration = (parse_time(cur_p['time']) - parsed_start_datetime).total_seconds()
+
+        cur_p['duration'] = duration
 
         # p['smoothed_elevation'] = smoothed_elevations[n]
-        p['speed'] = smoothed_speeds[n] * 3600. / 1000.
+        speed = smoothed_speeds[n] * 3600. / 1000.
+        cur_p['speed'] = speed if duration < 60 else 0.
 
         if n < 1:
-            p['total_distance'] = 0.
-
-        if n >= 1:
-            cheap_distance = cheap_ruler_distance([parsed_points[n - 1], p])
-            total_distance['value'] += cheap_distance / 1000.
-            p['total_distance'] = total_distance['value']
-
-        p['distance'] = cheap_distance
-        p['slope'] = 100 * (smoothed_elevations[n - 1] - smoothed_elevations[n]) / cheap_distance if cheap_distance > 0 else 0.
-
-        if parsed_start_datetime is not None and p['time'] is not None:
-            p['duration'] = (parse_time(p['time']) - parsed_start_datetime).total_seconds()
+            cur_p['total_distance'] = 0.
         else:
-            p['duration'] = 0
+            cheap_distance = cheap_ruler_distance([last_p, cur_p])
+            total_distance['value'] += cheap_distance / 1000.
+            cur_p['total_distance'] = total_distance['value']
 
-        return p
+        cur_p['distance'] = cheap_distance
+        cur_p['slope'] = 100 * (smoothed_elevations[n - 1] - smoothed_elevations[n]) / cheap_distance if cheap_distance > 0 else 0.
+
+        return cur_p
 
     # Remove namespace to ease nodes selection
     gpx_xml = re.sub(' xmlns="[^"]+"', '', xml, count=1)
