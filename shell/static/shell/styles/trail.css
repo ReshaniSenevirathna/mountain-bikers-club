@@ -194,11 +194,11 @@
 }
 
 .trail-map__chart .bk-tooltip-row-label {
-    color: var(--blue) !important;
+    display: none !important;
 }
 
 .trail-map__chart .bk-tooltip-row-value {
-    color: var(--green) !important;
+    color: var(--base05) !important;
 }
 
 /* --- Leaflet --- */
