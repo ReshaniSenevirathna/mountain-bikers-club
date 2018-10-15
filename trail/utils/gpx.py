@@ -160,6 +160,7 @@ def parse(xml):
             p['total_distance'] = total_distance['value']
 
         p['distance'] = cheap_distance
+        p['slope'] = 100 * (smoothed_elevations[n - 1] - smoothed_elevations[n]) / cheap_distance if cheap_distance > 0 else 0.
 
         if parsed_start_datetime is not None and p['time'] is not None:
             p['duration'] = (parse_time(p['time']) - parsed_start_datetime).total_seconds()
