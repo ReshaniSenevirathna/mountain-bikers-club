@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-10-11 17:24+0000\n"
+"POT-Creation-Date: 2018-10-15 19:39+0000\n"
 "PO-Revision-Date: 2018-08-18 21:45+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -424,7 +424,7 @@ msgstr "GPX Datei"
 
 #: trail/tasks.py:75 trail/templates/trail/edit.html:5
 #: trail/templates/trail/edit.html:16 trail/templates/trail/main.html:5
-#: trail/templates/trail/main.html:34
+#: trail/templates/trail/main.html:13 trail/templates/trail/main.html:35
 #: trail/templates/trail/tag_trail_preview.html:9
 #: trail/templates/trail/trail_confirm_delete.html:5
 #: trail/templates/trail/trail_confirm_delete.html:16
@@ -441,63 +441,63 @@ msgstr "%(trail_name)s ändern"
 msgid "Map"
 msgstr "Karte"
 
-#: trail/templates/trail/main.html:16 trail/templates/trail/main.html:115
+#: trail/templates/trail/main.html:17 trail/templates/trail/main.html:116
 #: trail/templates/trail/tag_trail_preview.html:39
 msgid "Distance"
 msgstr "Entfernung"
 
-#: trail/templates/trail/main.html:16
+#: trail/templates/trail/main.html:17
 msgid "Duration"
 msgstr "Beschreibung"
 
-#: trail/templates/trail/main.html:16 trail/templates/trail/main.html:122
+#: trail/templates/trail/main.html:17 trail/templates/trail/main.html:123
 #: trail/templates/trail/tag_trail_preview.html:46
 msgid "Uphill"
 msgstr "Bergauf"
 
-#: trail/templates/trail/main.html:43
+#: trail/templates/trail/main.html:44
 #, python-format
 msgid "Published by <a href=\"%(link)s\">@%(user)s</a> on %(date)s."
 msgstr "Gepostet von <a href=\"%(link)s\">@%(user)s</a> am %(date)s."
 
-#: trail/templates/trail/main.html:63
+#: trail/templates/trail/main.html:64
 msgid "Edit trail"
 msgstr "Trail ändern"
 
-#: trail/templates/trail/main.html:77
+#: trail/templates/trail/main.html:78
 #: trail/templates/trail/tag_trail_preview.html:32
 msgid "Location"
 msgstr "Ort"
 
-#: trail/templates/trail/main.html:84
+#: trail/templates/trail/main.html:85
 msgid "Minimum altitude"
 msgstr "Niedrigster Punkt"
 
-#: trail/templates/trail/main.html:91
+#: trail/templates/trail/main.html:92
 msgid "Maximun altidtude"
 msgstr "Höchster Punkt"
 
-#: trail/templates/trail/main.html:98
+#: trail/templates/trail/main.html:99
 msgid "Start date and time"
 msgstr "Startdatum und -zeit"
 
-#: trail/templates/trail/main.html:129
+#: trail/templates/trail/main.html:130
 msgid "Moving time"
 msgstr "Zeit in Bewegung"
 
-#: trail/templates/trail/main.html:136
+#: trail/templates/trail/main.html:137
 msgid "Average moving speed"
 msgstr "Durchschnittsgeschwindigkeit"
 
-#: trail/templates/trail/main.html:143
+#: trail/templates/trail/main.html:144
 msgid "Maximum speed"
 msgstr "Höchstgeschwindigkeit"
 
-#: trail/templates/trail/main.html:152
+#: trail/templates/trail/main.html:153
 msgid "Analyzing..."
 msgstr "Analysieren..."
 
-#: trail/templates/trail/main.html:154
+#: trail/templates/trail/main.html:155
 #, python-format
 msgid ""
 "Your trail is currently being analyzed. It will take a few minutes. Once "
@@ -509,12 +509,12 @@ msgstr ""
 "Mountain Bikers Club navigieren oder <a hreg=\"%(url_trail_new)s\">einen "
 "neuen Trail hochladen</a>."
 
-#: trail/templates/trail/main.html:184
+#: trail/templates/trail/main.html:185
 #: trail/templates/trail/tag_trail_preview.html:19
 msgid "Map of the trail: "
 msgstr "Karte des Trails: "
 
-#: trail/templates/trail/main.html:202
+#: trail/templates/trail/main.html:203
 msgid "Delete trail"
 msgstr "Trail löschen"
 
@@ -533,19 +533,31 @@ msgstr "%(trail_name)s löschen"
 msgid "Are you sure you want to delete \"%(trail_name)s\"?"
 msgstr "Sind Sie sicher, dass Sie \"%(trail_name)s\" löschen wollen?"
 
-#: trail/views.py:101 trail/views.py:218
+#: trail/views.py:101 trail/views.py:283
 msgid "Trail does not exist"
 msgstr "Trail existiert nicht"
 
-#: trail/views.py:152
+#: trail/views.py:154
 msgid "Elevation"
 msgstr "Höhe"
 
-#: trail/views.py:155
+#: trail/views.py:176
 msgid "Speed"
 msgstr "Geschwindigkeit"
 
-#: trail/views.py:223
+#: trail/views.py:185
+msgid "Heart rate"
+msgstr "Herzfrequenz"
+
+#: trail/views.py:194
+msgid "Cadence"
+msgstr "Kadenz"
+
+#: trail/views.py:202
+msgid "Temperature"
+msgstr "Temperatur"
+
+#: trail/views.py:288
 msgid "Track index is out of range"
 msgstr "Trackindex is nicht verfügbar"
 
