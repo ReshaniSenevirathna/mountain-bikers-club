@@ -1,6 +1,5 @@
 import os
 import requests
-from bokeh.models import Range1d, LinearAxis, PrintfTickFormatter
 
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect, JsonResponse, Http404, HttpResponse
@@ -8,10 +7,11 @@ from django.urls import reverse, reverse_lazy
 from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.utils.translation import gettext as _
+from django.views.generic import DeleteView
 from bokeh.plotting import figure, ColumnDataSource
 from bokeh.embed import components
-from bokeh.models import HoverTool
-from django.views.generic import DeleteView
+from bokeh.layouts import gridplot
+from bokeh.models import Range1d, LinearAxis, PrintfTickFormatter, HoverTool
 
 from .forms import GpxUploadForm, GpxEditForm
 from .models import Trail
@@ -104,97 +104,162 @@ def main(request, trail_id):
         is_favorite = current_user in trail.favorite_by.all()
 
     # Chart
+    # TODO Slope
     if trail.tracks is not None and len(trail.tracks) > 0:
         for track in trail.tracks:
             x_distance = list(map(lambda p: p['total_distance'], track['points']))
             y_elevation = list(map(lambda p: p['elevation'], track['points']))
             y_speed = list(map(lambda p: p['speed'], track['points']))
-
-            hover = HoverTool(
-                tooltips=[
-                    ("distance", "@distance{%4.2f km}"),
-                    ("elevation", "@elevation{%5d m}"),
-                    ("speed", "@speed{%3.1f km/h}"),
-                ],
-                formatters={
-                    'distance': 'printf',
-                    'elevation': 'printf',
-                    'speed': 'printf',
-                },
-                mode='vline'
-            )
-
-            plot = figure(
-                tools='xpan,xwheel_zoom,xwheel_pan,xzoom_in,xzoom_out,reset,crosshair',
-                toolbar_location='above',
-                sizing_mode='scale_width',
-                plot_width=1100,
-                plot_height=320,
-            )
-
-            plot.add_tools(hover)
-
-            plot.x_range = Range1d(start=0, end=x_distance[-1])
-            plot.y_range = Range1d(start=min(y_elevation) - 30, end=max(y_elevation) + 30)
-            plot.extra_y_ranges['speed'] = Range1d(start=min(y_speed), end=max(y_speed) + 3)
-            plot.add_layout(LinearAxis(y_range_name='speed'), 'left')
+            y_heart_rate = list(map(lambda p: p['heart_rate'], track['points']))
+            y_temperature = list(map(lambda p: p['temperature'], track['points']))
+            y_cadence = list(map(lambda p: p['cadence'], track['points']))
 
             source = ColumnDataSource(data=dict(
                 distance=x_distance,
                 elevation=y_elevation,
                 speed=y_speed,
+                heart_rate=y_heart_rate,
+                temperature=y_temperature,
+                cadence=y_cadence
             ))
-            plot.line('distance', 'elevation', source=source, line_width=3, color='#3d85cc', alpha=0.17)
+
+            tools = 'xpan,xzoom_in,xzoom_out,reset,crosshair'
+
+            main_plot = figure(
+                tools=tools,
+                sizing_mode='scale_width',
+                plot_width=1100,
+                plot_height=290,
+            )
+
+            temp_plot = figure(
+                tools=tools,
+                sizing_mode='scale_width',
+                plot_width=1100,
+                plot_height=170,
+            )
+
+            main_plot.x_range = Range1d(start=0, end=x_distance[-1])
+            main_plot.y_range = Range1d(start=min(y_elevation) - 30, end=max(y_elevation) + 100)
+
+            temp_plot.x_range = main_plot.x_range
+            temp_plot.y_range = Range1d(start=min(y_elevation) - 30, end=max(y_elevation) + 100)
+
+            elevation_line = main_plot.line('distance', 'elevation', source=source, line_width=1, color='#3d85cc', alpha=0.85)
+            temp_plot.line('distance', 'elevation', source=source, line_width=1, color='#3d85cc', alpha=0.85)
 
             end_patch = min(y_elevation) - 30
             x_patch = [x_distance[0]] + x_distance + [x_distance[-1]]
             y_patch = [end_patch] + y_elevation + [end_patch]
-            plot.patch(x_patch, y_patch, legend=_('Elevation'), color='#3d85cc', alpha=0.8)
+            main_plot.patch(x_patch, y_patch, legend=_('Elevation'), color='#3d85cc', alpha=0.8)
 
-            y_patch = [0.] + y_speed + [0.]
-            plot.patch(x_patch, y_patch, y_range_name='speed', legend=_('Speed'), color='#66cc66', alpha=0.5)
+            main_plot.xaxis[0].formatter = PrintfTickFormatter(format='%4.1f km')
+            temp_plot.xaxis[0].formatter = PrintfTickFormatter(format='%4.1f km')
 
-            plot.xaxis[0].formatter = PrintfTickFormatter(format='%4.1f km')
-            plot.yaxis[0].formatter = PrintfTickFormatter(format='%5d m')
-            plot.yaxis[1].formatter = PrintfTickFormatter(format='%3d km/h')
+            main_plot.yaxis[0].formatter = PrintfTickFormatter(format='%5d m')
+            main_plot.yaxis[0].major_label_text_color = '#3d85cc'
+            temp_plot.yaxis[0].visible = False
 
-            # Styling
+            tooltips = [
+               # ('distance', '@distance{%4.2f km}'),
+               ('elevation', '@elevation{%5d m}'),
+            ]
+
+            y_index = 1
+
+            if max(y_speed) > 0:
+                main_plot.extra_y_ranges['speed'] = Range1d(start=min(y_speed), end=max(y_speed) + 5)
+                main_plot.add_layout(LinearAxis(y_range_name='speed'), 'left')
+                # y_patch = [0.] + y_speed + [0.]
+                # main_plot.patch(x_patch, y_patch, y_range_name='speed', legend=_('Speed'), color='#66cc66', alpha=0.5)
+                main_plot.line('distance', 'speed', source=source, y_range_name='speed',
+                               legend=_('Speed'), line_width=2, color='#66cc66', alpha=0.7)
+                main_plot.yaxis[y_index].formatter = PrintfTickFormatter(format='%3d km/h')
+                main_plot.yaxis[y_index].major_label_text_color = '#66cc66'
+                tooltips.append(('speed', '@speed{%3.1f km/h}'))
+                y_index = y_index + 1
+
+            if max(y_heart_rate) > 0:
+                main_plot.extra_y_ranges['heart_rate'] = Range1d(start=min(y_heart_rate) - 10, end=max(y_heart_rate) + 10)
+                main_plot.add_layout(LinearAxis(y_range_name='heart_rate'), 'right')
+                main_plot.line('distance', 'heart_rate', source=source, y_range_name='heart_rate', legend=_('Heart rate'), line_width=2, color='#f2777a', alpha=0.7)
+                main_plot.yaxis[y_index].formatter = PrintfTickFormatter(format='%3d bpm')
+                main_plot.yaxis[y_index].major_label_text_color = '#f2777a'
+                tooltips.append(('heart_rate', '@heart_rate{%3d bpm}'))
+
+            if max(y_cadence) > 0:
+                main_plot.extra_y_ranges['cadence'] = Range1d(start=min(y_cadence) - 10, end=max(y_cadence) + 10)
+                main_plot.add_layout(LinearAxis(y_range_name='cadence'), 'right')
+                main_plot.line('distance', 'cadence', source=source, y_range_name='cadence',
+                               legend=_('Cadence'), line_width=2, color='#cc99cc', alpha=0.7)
+                main_plot.yaxis[y_index].formatter = PrintfTickFormatter(format='%3d')
+                main_plot.yaxis[y_index].major_label_text_color = '#cc99cc'
+                tooltips.append(('cadence', '@cadence{%3d}'))
+
+            if max(y_temperature) > 0:
+                temp_plot.extra_y_ranges['temperature'] = Range1d(start=min(y_temperature) - 3, end=max(y_temperature) + 3)
+                temp_plot.add_layout(LinearAxis(y_range_name='temperature'), 'left')
+                temp_plot.line('distance', 'temperature', source=source, y_range_name='temperature', legend=_('Temperature'), line_width=2, color='#ffcc66')
+                temp_plot.yaxis[1].formatter = PrintfTickFormatter(format='%2d °C')
+                temp_plot.yaxis[1].major_label_text_color = '#ffcc66'
+                tooltips.append(('temperature', '@temperature{%2d °C}'))
+
+            # Tools
+            hover_tool = HoverTool(
+                renderers=[elevation_line],
+                tooltips=tooltips,
+                formatters={
+                    'distance': 'printf',
+                    'elevation': 'printf',
+                    'speed': 'printf',
+                    'heart_rate': 'printf',
+                    'cadence': 'printf',
+                    'temperature': 'printf',
+                },
+                mode='vline'
+            )
+            main_plot.add_tools(hover_tool)
+
+            # Generic styling
             # http://bokeh.pydata.org/en/latest/docs/user_guide/styling.html
-            plot.border_fill_color = '#2d2d2d'
-            plot.background_fill_color = '#393939'
-            plot.outline_line_color = 'black'
+            def set_plot_styles(plot):
+                plot.border_fill_color = '#2d2d2d'
+                plot.background_fill_color = '#393939'
+                plot.outline_line_color = 'black'
 
-            plot.xaxis.major_label_text_color = '#d3d0c8'
-            plot.yaxis[0].major_label_text_color = '#3d85cc'
-            plot.yaxis[1].major_label_text_color = '#66cc66'
-            plot.xaxis.major_label_text_font = 'UniNeue'
-            plot.yaxis.major_label_text_font = 'UniNeue'
+                plot.xaxis.major_label_text_color = '#d3d0c8'
+                plot.xaxis.major_label_text_font = 'UniNeue'
+                plot.yaxis.major_label_text_font = 'UniNeue'
 
-            plot.xgrid.grid_line_color = '#515151'
-            plot.xgrid.grid_line_dash = [6, 4]
-            plot.ygrid.grid_line_color = '#515151'
-            plot.ygrid.grid_line_dash = [6, 4]
+                plot.xgrid.grid_line_color = '#515151'
+                plot.xgrid.grid_line_dash = [6, 4]
+                plot.ygrid.grid_line_color = '#515151'
+                plot.ygrid.grid_line_dash = [6, 4]
 
-            plot.xgrid.minor_grid_line_color = '#515151'
-            plot.xgrid.minor_grid_line_alpha = 0.5
-            plot.xgrid.minor_grid_line_dash = [6, 4]
-            plot.ygrid.minor_grid_line_color = '#515151'
-            plot.ygrid.minor_grid_line_alpha = 0.5
-            plot.ygrid.minor_grid_line_dash = [6, 4]
+                plot.xgrid.minor_grid_line_color = '#515151'
+                plot.xgrid.minor_grid_line_alpha = 0.5
+                plot.xgrid.minor_grid_line_dash = [6, 4]
+                plot.ygrid.minor_grid_line_color = '#515151'
+                plot.ygrid.minor_grid_line_alpha = 0.5
+                plot.ygrid.minor_grid_line_dash = [6, 4]
 
-            plot.title.text_color = '#a09f93'
+                plot.title.text_color = '#a09f93'
 
-            plot.legend.location = 'top_left'
-            # plot.legend.orientation = 'horizontal'
-            plot.legend.label_text_font = "UniNeue"
-            plot.legend.label_text_color = '#a09f93'
-            plot.legend.border_line_color = '#515151'
-            plot.legend.background_fill_color = '#2d2d2d'
-            plot.legend.background_fill_alpha = 0.85
-            plot.legend.click_policy = 'hide'
-            plot.legend.inactive_fill_color = '#2d2d2d'
+                plot.legend.location = 'top_left'
+                plot.legend.label_text_font = "UniNeue"
+                plot.legend.label_text_color = '#a09f93'
+                plot.legend.border_line_color = '#515151'
+                plot.legend.background_fill_color = '#2d2d2d'
+                plot.legend.background_fill_alpha = 0.85
+                plot.legend.click_policy = 'hide'
+                plot.legend.inactive_fill_color = '#2d2d2d'
 
-            script, div = components(plot)
+            set_plot_styles(main_plot)
+            set_plot_styles(temp_plot)
+
+            grid = gridplot([[main_plot], [temp_plot]], sizing_mode='scale_width', toolbar_location='above')
+
+            script, div = components(grid)
 
             charts.append({
                 'script': script,
