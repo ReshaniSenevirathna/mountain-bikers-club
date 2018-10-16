@@ -16,8 +16,8 @@ These are the minimun requirements (JavaScript is not mandatory):
 - Web Component and Shadow DOM
 
 ## Hosting
-- The website and the database are hosted on Heroku.
-- The user's files are uploaded and served via the Amazon Web Service S3.
+- The website and the databases are hosted on Heroku.
+- The user's files are uploaded and served via Digital Ocean Spaces.
 - The DNS and the SSL certificate are managed through Cloudflare.
 - The map tiles come from Komoot, OpenTopoMap and OpenCycleMap.
 
@@ -39,7 +39,7 @@ a pull request.
 Thank you to all [the people who already contributed to Mountain Bikers Club](https://github.com/cedeber/mountain-bikers-club/graphs/contributors)!
 
 ## Financial Contribution
-The hosting on Heroku and AWS S3 are not free. If you want to support the development
+The hosting on Heroku and Digital Ocean are not free. If you want to support the development
 of the app, you can send me some money via Buy Me A Coffee.
 
 [![Buy Me A Coffee](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/cedeber)
